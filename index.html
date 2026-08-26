@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GRAIN — Cut With the Grain</title>
+<meta name="description" content="GRAIN — considered essentials for men and women, constructed to move with you. Shop Men, Women, Streetwear and Essentials." />
+<meta name="theme-color" content="#EDEAE1" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%232B3A56'/%3E%3Ctext x='50' y='69' font-family='Georgia,serif' font-size='58' fill='%23EDEAE1' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --paper:#EDEAE1;
+  --paper-deep:#E2DDCE;
+  --paper-soft:#F5F3EC;
+  --ink:#1C1B17;
+  --graphite:#5B584E;
+  --line:#C9C2AE;
+  --indigo:#2B3A56;
+  --indigo-deep:#1E2A40;
+  --thread:#855F21;
+  --white:#FBFAF6;
+
+  --font-display:'Fraunces', 'Georgia', serif;
+  --font-body:'IBM Plex Sans', -apple-system, sans-serif;
+  --font-mono:'IBM Plex Mono', 'Courier New', monospace;
+
+  --radius:2px;
+  --section-pad: clamp(4rem, 8vw, 7.5rem);
+  --gutter: clamp(1.25rem, 4.5vw, 4rem);
+  --container: 1440px;
+
+  --ease: cubic-bezier(.16,.8,.24,1);
+  --ease-soft: cubic-bezier(.4,0,.2,1);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; background:none; border:none; cursor:pointer; color:inherit; }
+ul{ list-style:none; }
+input{ font:inherit; }
+h1,h2,h3,h4{ font-weight:400; line-height:1.05; }
+
+:focus-visible{
+  outline:2px solid var(--indigo);
+  outline-offset:3px;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.container{
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--graphite);
+  display:inline-flex;
+  align-items:center;
+  gap:.6em;
+}
+.eyebrow::before{
+  content:'';
+  width:1.1em; height:1px;
+  background:var(--thread);
+  display:inline-block;
+  flex-shrink:0;
+}
+.eyebrow-light{ color:rgba(251,250,246,.8); }
+.eyebrow-light::before{ background:var(--white); opacity:.7; }
+
+.section-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:1.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+.section-head h2{
+  font-family:var(--font-display);
+  font-size:clamp(2rem, 3.4vw, 3rem);
+  letter-spacing:-.01em;
+  margin-top:.6rem;
+}
+.section-head p{
+  max-width:32ch;
+  color:var(--graphite);
+  font-size:.98rem;
+}
+
+.btn{
+  font-family:var(--font-mono);
+  font-size:.76rem;
+  font-weight:500;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  padding:1em 1.9em;
+  border-radius:var(--radius);
+  display:inline-flex;
+  align-items:center;
+  gap:.7em;
+  white-space:nowrap;
+  transition:background-color .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease), transform .35s var(--ease);
+}
+.btn svg{ width:15px; height:15px; transition:transform .35s var(--ease); }
+.btn:hover svg{ transform:translateX(3px); }
+.btn-primary{ background:var(--indigo); color:var(--white); border:1px solid var(--indigo); }
+.btn-primary:hover{ background:var(--indigo-deep); border-color:var(--indigo-deep); transform:translateY(-2px); }
+.btn-outline{ background:transparent; color:var(--ink); border:1px solid var(--ink); }
+.btn-outline:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px); }
+.btn-outline-light{ background:transparent; color:var(--white); border:1px solid rgba(251,250,246,.6); }
+.btn-outline-light:hover{ background:var(--white); color:var(--ink); border-color:var(--white); transform:translateY(-2px); }
+.btn-block{ width:100%; justify-content:center; }
+
+.cut-line{
+  height:11px;
+  background-repeat:no-repeat;
+  background-position:center, center;
+  background-size:100% 7px, 100% 1px;
+  background-image:
+    repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 34px),
+    linear-gradient(var(--line), var(--line));
+  opacity:.9;
+}
+
+.swatch{
+  font-family:var(--font-mono);
+  font-size:.66rem;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  color:var(--graphite);
+  display:inline-flex;
+  align-items:center;
+  gap:.5em;
+}
+.swatch-dot{
+  width:9px; height:9px;
+  border-radius:50%;
+  background:var(--swatch, var(--graphite));
+  display:inline-block;
+  border:1px solid rgba(0,0,0,.15);
+  flex-shrink:0;
+}
+
+.badge{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  font-weight:600;
+  letter-spacing:.08em;
+  padding:.4em .7em;
+  border-radius:var(--radius);
+  text-transform:uppercase;
+}
+.badge-new{ background:var(--indigo); color:var(--white); }
+.badge-best{ background:var(--thread); color:var(--white); }
+
+.framed-image{
+  position:relative;
+  background:var(--paper);
+  padding:18px;
+}
+.framed-image img{ width:100%; height:100%; object-fit:cover; }
+.mark{ position:absolute; width:13px; height:13px; z-index:2; }
+.mark::before{ content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:var(--graphite); opacity:.55; }
+.mark::after{ content:''; position:absolute; left:50%; top:0; width:1px; height:100%; background:var(--graphite); opacity:.55; }
+.mark-tl{ top:5px; left:5px; } .mark-tr{ top:5px; right:5px; }
+.mark-bl{ bottom:5px; left:5px; } .mark-br{ bottom:5px; right:5px; }
+
+/* scroll reveal — gated behind .js-ready so content stays visible if JS never runs */
+.js-ready .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease-soft), transform .8s var(--ease-soft); }
+.js-ready .reveal.in-view{ opacity:1; transform:translateY(0); }
+.reveal-delay-1.in-view{ transition-delay:.08s; }
+.reveal-delay-2.in-view{ transition-delay:.16s; }
+.reveal-delay-3.in-view{ transition-delay:.24s; }
+.reveal-delay-4.in-view{ transition-delay:.32s; }
+.reveal-delay-5.in-view{ transition-delay:.4s; }
+.reveal-delay-6.in-view{ transition-delay:.48s; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header{
+  position:fixed; top:0; left:0; right:0;
+  z-index:200;
+  padding-block:1.9rem;
+  transition:padding .4s var(--ease), background-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.header::before{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.32), transparent);
+  z-index:-1;
+  opacity:1;
+  transition:opacity .4s var(--ease);
+}
+.header.is-scrolled::before{ opacity:0; }
+.header.is-scrolled{
+  padding-block:1rem;
+  background:rgba(237,234,225,.94);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  box-shadow:0 1px 0 var(--line);
+}
+.header-inner{
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+}
+.logo{
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  letter-spacing:.03em;
+  color:var(--white);
+  transition:color .4s var(--ease);
+  flex-shrink:0;
+}
+.header.is-scrolled .logo{ color:var(--ink); }
+.nav-desktop{
+  display:flex;
+  align-items:center;
+  gap:clamp(1.4rem, 2.4vw, 2.6rem);
+}
+.nav-desktop a{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--white);
+  position:relative;
+  padding-block:.3rem;
+  transition:color .4s var(--ease);
+}
+.nav-desktop a::after{
+  content:'';
+  position:absolute; left:0; right:100%; bottom:0;
+  height:1px; background:currentColor;
+  transition:right .35s var(--ease);
+}
+.nav-desktop a:hover::after{ right:0; }
+.header.is-scrolled .nav-desktop a{ color:var(--ink); }
+.header-actions{ display:flex; align-items:center; gap:1.1rem; }
+.icon-btn{
+  color:var(--white);
+  transition:color .4s var(--ease), opacity .25s var(--ease);
+  display:flex; align-items:center; justify-content:center;
+  position:relative;
+}
+.icon-btn:hover{ opacity:.7; }
+.header.is-scrolled .icon-btn{ color:var(--ink); }
+.icon-btn svg{ width:19px; height:19px; }
+.bag-btn{ position:relative; }
+.bag-count{
+  position:absolute; top:-7px; right:-9px;
+  background:var(--thread); color:var(--white);
+  font-family:var(--font-mono); font-size:.6rem; font-weight:600;
+  width:16px; height:16px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  line-height:1;
+}
+.search-wrap{ display:flex; align-items:center; }
+.search-input{
+  width:0; opacity:0;
+  border:none; border-bottom:1px solid currentColor;
+  background:transparent;
+  color:inherit;
+  font-family:var(--font-mono); font-size:.8rem;
+  padding-block:.2rem;
+  transition:width .4s var(--ease), opacity .3s var(--ease), margin .4s var(--ease);
+  margin-right:0;
+}
+.search-wrap.is-open .search-input{ width:170px; opacity:1; margin-right:.7rem; }
+
+.menu-toggle{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  gap:5px;
+  width:26px; height:20px;
+  color:var(--white);
+  transition:color .4s var(--ease);
+}
+.header.is-scrolled .menu-toggle{ color:var(--ink); }
+.menu-toggle span{
+  display:block; height:1.4px; width:100%;
+  background:currentColor;
+  transition:transform .4s var(--ease), opacity .3s var(--ease);
+}
+.menu-toggle.is-open span:nth-child(1){ transform:translateY(6.4px) rotate(45deg); }
+.menu-toggle.is-open span:nth-child(2){ opacity:0; }
+.menu-toggle.is-open span:nth-child(3){ transform:translateY(-6.4px) rotate(-45deg); }
+
+/* ============================================================
+   MOBILE NAV
+   ============================================================ */
+.mobile-nav{
+  position:fixed; inset:0; z-index:190;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+  justify-content:center;
+  padding:2rem var(--gutter);
+  transform:translateY(-100%);
+  transition:transform .55s var(--ease);
+}
+.mobile-nav.is-open{ transform:translateY(0); }
+.mobile-nav a{
+  font-family:var(--font-display);
+  font-size:clamp(2.1rem, 9vw, 3rem);
+  padding-block:.4rem;
+  border-bottom:1px solid var(--line);
+  display:block;
+}
+.mobile-nav-foot{
+  margin-top:2.5rem;
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  color:var(--graphite);
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:var(--ink);
+}
+.hero-media{ position:absolute; inset:0; z-index:0; }
+.hero-media img{
+  width:100%; height:100%; object-fit:cover;
+  object-position:center 20%;
+  transform:scale(1.08);
+  animation:heroZoom 14s var(--ease-soft) forwards;
+}
+@keyframes heroZoom{ to{ transform:scale(1); } }
+.hero-scrim{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(to top, rgba(15,14,11,.78) 0%, rgba(15,14,11,.28) 46%, rgba(15,14,11,.12) 70%),
+    linear-gradient(to right, rgba(15,14,11,.35), transparent 55%);
+  z-index:1;
+}
+.hero-content{
+  position:relative; z-index:2;
+  width:100%;
+  padding-inline:var(--gutter);
+  padding-bottom:clamp(3.5rem, 8vw, 6rem);
+  max-width:var(--container);
+  margin-inline:auto;
+  color:var(--white);
+}
+.hero-eyebrow{ opacity:0; }
+.hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(3.2rem, 9vw, 7.2rem);
+  letter-spacing:-.015em;
+  margin-top:.9rem;
+  max-width:14ch;
+}
+.hero h1 em{ font-style:italic; font-weight:300; }
+.hero-sub{
+  margin-top:1.5rem;
+  font-size:clamp(1rem, 1.4vw, 1.2rem);
+  max-width:34ch;
+  color:rgba(251,250,246,.86);
+  font-weight:300;
+}
+.hero-actions{
+  margin-top:2.4rem;
+  display:flex; flex-wrap:wrap; gap:1rem;
+}
+.hero-fade-up{
+  opacity:0; transform:translateY(26px);
+  animation:fadeUp .9s var(--ease-soft) forwards;
+}
+@keyframes fadeUp{ to{ opacity:1; transform:translateY(0); } }
+.hero-eyebrow{ animation-delay:.3s; }
+.hero-title{ animation-delay:.5s; }
+.hero-sub{ animation-delay:.75s; }
+.hero-actions{ animation-delay:.95s; }
+
+.scroll-cue{
+  position:absolute; bottom:1.9rem; left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:.7rem;
+  color:rgba(251,250,246,.75);
+  opacity:0;
+  animation:fadeUp .9s var(--ease-soft) forwards;
+  animation-delay:1.2s;
+}
+.scroll-cue span{
+  font-family:var(--font-mono); font-size:.64rem; letter-spacing:.2em; text-transform:uppercase;
+}
+.scroll-cue .line{ width:1px; height:34px; background:rgba(251,250,246,.4); position:relative; overflow:hidden; }
+.scroll-cue .line::after{
+  content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+  background:var(--white);
+  animation:scrollDrip 2.2s ease-in-out infinite;
+}
+@keyframes scrollDrip{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+
+/* ============================================================
+   BRAND INTRO
+   ============================================================ */
+.brand-intro{ padding-block:var(--section-pad); }
+.brand-intro .container{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:clamp(2.5rem, 6vw, 6rem);
+  align-items:center;
+}
+.brand-intro-text p.statement{
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem, 2.6vw, 2.35rem);
+  line-height:1.32;
+  margin-top:1.1rem;
+  max-width:22ch;
+}
+.brand-intro-text .support{
+  margin-top:1.6rem;
+  color:var(--graphite);
+  font-size:1rem;
+  max-width:36ch;
+}
+.brand-intro-media{ position:relative; }
+.brand-intro-media .framed-image{ aspect-ratio:4/5; }
+
+/* ============================================================
+   COLLECTIONS
+   ============================================================ */
+.collections{ padding-block:var(--section-pad); background:var(--paper-deep); }
+.collections-grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(1rem, 2vw, 1.75rem);
+}
+.collection-card{
+  position:relative;
+  display:block;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  grid-column:span 6;
+}
+.collection-card:nth-child(1){ grid-column:span 7; }
+.collection-card:nth-child(2){ grid-column:span 5; }
+.collection-card:nth-child(3){ grid-column:span 5; }
+.collection-card:nth-child(4){ grid-column:span 7; }
+.collection-card img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform 1s var(--ease-soft);
+}
+.collection-card:hover img{ transform:scale(1.07); }
+.collection-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(15,14,11,.75) 0%, rgba(15,14,11,.08) 55%, transparent 75%);
+  transition:background .5s var(--ease);
+}
+.collection-card:hover .collection-overlay{
+  background:linear-gradient(to top, rgba(15,14,11,.85) 0%, rgba(15,14,11,.22) 60%, rgba(15,14,11,.05) 100%);
+}
+.collection-label{
+  position:absolute; left:1.75rem; right:1.75rem; bottom:1.75rem;
+  color:var(--white);
+  display:flex; align-items:flex-end; justify-content:space-between; gap:1rem;
+}
+.collection-label h3{
+  font-family:var(--font-display);
+  font-size:clamp(1.6rem, 2.6vw, 2.3rem);
+  transition:transform .45s var(--ease);
+}
+.collection-card:hover .collection-label h3{ transform:translateX(4px); }
+.collection-explore{
+  display:flex; align-items:center; gap:.5rem;
+  font-family:var(--font-mono); font-size:.7rem; letter-spacing:.08em; text-transform:uppercase;
+  opacity:0; transform:translateY(6px);
+  transition:opacity .4s var(--ease), transform .4s var(--ease);
+  flex-shrink:0;
+  padding-bottom:.35rem;
+}
+.collection-card:hover .collection-explore{ opacity:1; transform:translateY(0); }
+.collection-explore svg{ width:14px; height:14px; }
+
+/* ============================================================
+   TRENDING PRODUCTS
+   ============================================================ */
+.trending{ padding-block:var(--section-pad); }
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(1.5rem, 2.5vw, 2.25rem);
+}
+.product-card{ position:relative; }
+.product-media{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  background:var(--paper-deep);
+}
+.product-media img{
+  width:100%; height:100%; object-fit:cover;
+  transition:transform .8s var(--ease-soft);
+}
+.product-card:hover .product-media img{ transform:scale(1.06); }
+.product-badges{ position:absolute; top:.9rem; left:.9rem; display:flex; gap:.4rem; z-index:2; }
+.quick-add{
+  position:absolute; left:.9rem; right:.9rem; bottom:.9rem;
+  background:var(--white);
+  color:var(--ink);
+  font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em; text-transform:uppercase;
+  padding:.75em 1em;
+  display:flex; align-items:center; justify-content:center; gap:.5em;
+  border-radius:var(--radius);
+  opacity:0; transform:translateY(10px);
+  transition:opacity .35s var(--ease), transform .35s var(--ease), background-color .3s var(--ease);
+}
+.product-card:hover .quick-add{ opacity:1; transform:translateY(0); }
+.quick-add:hover{ background:var(--indigo); color:var(--white); }
+.quick-add svg{ width:13px; height:13px; }
+.product-info{ padding-top:1rem; }
+.product-top{ display:flex; align-items:baseline; justify-content:space-between; gap:1rem; }
+.product-top h3{ font-family:var(--font-body); font-weight:500; font-size:1rem; }
+.product-price{ font-family:var(--font-mono); font-size:.92rem; flex-shrink:0; }
+.product-cat{ color:var(--graphite); font-size:.85rem; margin-top:.2rem; }
+.product-info .swatch{ margin-top:.65rem; }
+.trending-foot{ margin-top:clamp(2.5rem, 5vw, 3.5rem); text-align:center; }
+
+/* ============================================================
+   CAMPAIGN
+   ============================================================ */
+.campaign{
+  position:relative;
+  min-height:78vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:var(--ink);
+}
+.campaign-media{ position:absolute; inset:0; }
+.campaign-media img{ width:100%; height:100%; object-fit:cover; object-position:center 25%; }
+.campaign-scrim{
+  position:absolute; inset:0;
+  background:linear-gradient(to top, rgba(12,12,10,.82), rgba(12,12,10,.15) 60%);
+}
+.campaign-content{
+  position:relative; z-index:1;
+  max-width:var(--container);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+  width:100%;
+  color:var(--white);
+}
+.campaign-content h2{
+  font-family:var(--font-display);
+  font-size:clamp(2.4rem, 6.5vw, 5rem);
+  max-width:16ch;
+  margin-top:1rem;
+  letter-spacing:-.01em;
+}
+.campaign-content p{
+  margin-top:1.3rem;
+  max-width:34ch;
+  color:rgba(251,250,246,.85);
+  font-size:1.05rem;
+}
+.campaign-content .btn{ margin-top:2.1rem; }
+
+/* ============================================================
+   NEW ARRIVALS
+   ============================================================ */
+.new-arrivals{ padding-block:var(--section-pad); background:var(--paper-deep); }
+.arrivals-strip{
+  display:flex;
+  gap:clamp(1.1rem, 2vw, 1.6rem);
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:1.4rem;
+  margin-bottom:-1.4rem;
+  scrollbar-width:thin;
+  scrollbar-color:var(--line) transparent;
+}
+.arrivals-strip::-webkit-scrollbar{ height:5px; }
+.arrivals-strip::-webkit-scrollbar-thumb{ background:var(--line); border-radius:4px; }
+.arrival-card{ flex:0 0 clamp(210px, 26vw, 280px); scroll-snap-align:start; }
+.arrival-media{ position:relative; aspect-ratio:3/4; overflow:hidden; }
+.arrival-media img{ width:100%; height:100%; object-fit:cover; transition:transform .8s var(--ease-soft); }
+.arrival-card:hover .arrival-media img{ transform:scale(1.06); }
+.arrival-media .badge{ position:absolute; top:.8rem; left:.8rem; }
+.arrival-info{ padding-top:.9rem; display:flex; justify-content:space-between; gap:.75rem; }
+.arrival-info h3{ font-size:.94rem; font-weight:500; }
+.arrival-info span{ font-family:var(--font-mono); font-size:.88rem; flex-shrink:0; }
+
+/* ============================================================
+   PHILOSOPHY
+   ============================================================ */
+.philosophy{ padding-block:var(--section-pad); }
+.philosophy-head{ max-width:44ch; margin-bottom:clamp(2.5rem, 5vw, 4rem); }
+.philosophy-head h2{
+  font-family:var(--font-display);
+  font-size:clamp(2rem, 3.4vw, 3rem);
+  margin-top:.6rem;
+}
+.philosophy-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:clamp(2rem, 3vw, 2.75rem);
+}
+.philosophy-item{ border-top:1px solid var(--line); padding-top:1.5rem; }
+.philosophy-item svg{ width:26px; height:26px; color:var(--indigo); }
+.philosophy-item h3{
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-top:1.4rem;
+}
+.philosophy-item p{ margin-top:.7rem; color:var(--graphite); font-size:.94rem; max-width:26ch; }
+
+/* ============================================================
+   NEWSLETTER
+   ============================================================ */
+.newsletter{ padding-block:var(--section-pad); background:var(--indigo); color:var(--white); }
+.newsletter .container{ text-align:center; display:flex; flex-direction:column; align-items:center; }
+.newsletter .eyebrow{ color:rgba(251,250,246,.75); justify-content:center; }
+.newsletter .eyebrow::before{ background:var(--white); opacity:.6; }
+.newsletter h2{
+  font-family:var(--font-display);
+  font-size:clamp(2.1rem, 4.4vw, 3.4rem);
+  margin-top:.8rem;
+}
+.newsletter p{
+  margin-top:1.1rem;
+  max-width:40ch;
+  color:rgba(251,250,246,.78);
+}
+.newsletter-form{
+  margin-top:2.2rem;
+  display:flex;
+  gap:.8rem;
+  width:100%;
+  max-width:440px;
+}
+.newsletter-form input{
+  flex:1;
+  background:transparent;
+  border:1px solid rgba(251,250,246,.4);
+  border-radius:var(--radius);
+  padding:1em 1.2em;
+  color:var(--white);
+  font-size:.92rem;
+}
+.newsletter-form input::placeholder{ color:rgba(251,250,246,.55); }
+.newsletter-form input:focus-visible{ outline-color:var(--white); }
+.newsletter-note{
+  margin-top:1rem;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:.04em;
+  color:rgba(251,250,246,.7);
+  min-height:1.2em;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{ padding-top:var(--section-pad); background:var(--ink); color:rgba(251,250,246,.82); }
+.footer-top{
+  display:grid;
+  grid-template-columns:1.4fr repeat(3,1fr);
+  gap:2.5rem;
+  padding-bottom:3.5rem;
+  border-bottom:1px solid rgba(251,250,246,.15);
+}
+.footer-brand .logo{ color:var(--white); font-size:1.5rem; }
+.footer-brand p{ margin-top:1rem; max-width:30ch; font-size:.92rem; color:rgba(251,250,246,.6); }
+.footer-social{ display:flex; gap:.9rem; margin-top:1.6rem; }
+.footer-social a{
+  width:34px; height:34px;
+  border:1px solid rgba(251,250,246,.25);
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  transition:background-color .3s var(--ease), border-color .3s var(--ease);
+}
+.footer-social a:hover{ background:rgba(251,250,246,.1); border-color:rgba(251,250,246,.5); }
+.footer-social svg{ width:15px; height:15px; }
+.footer-col h4{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(251,250,246,.5);
+  margin-bottom:1.2rem;
+}
+.footer-col a{
+  display:block;
+  padding-block:.45rem;
+  font-size:.92rem;
+  color:rgba(251,250,246,.82);
+  transition:color .25s var(--ease), padding-left .25s var(--ease);
+}
+.footer-col a:hover{ color:var(--white); padding-left:.3rem; }
+.footer-bottom{
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+  gap:1rem;
+  padding-block:1.6rem;
+  font-family:var(--font-mono);
+  font-size:.74rem;
+  letter-spacing:.03em;
+  color:rgba(251,250,246,.5);
+}
+.footer-legal{ display:flex; gap:1.5rem; align-items:center; }
+
+/* ============================================================
+   FOOTER CREDIT — small, in-flow, non-distracting build credit.
+   Kept inside normal document flow (not fixed) so it can never
+   sit on top of other page content while scrolling.
+   ============================================================ */
+.footer-credit{
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.02em;
+  color:rgba(251,250,246,.32);
+  padding-left:1.5rem;
+  border-left:1px solid rgba(251,250,246,.18);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .nav-desktop{ display:none; }
+  .menu-toggle{ display:flex; }
+  .brand-intro .container{ grid-template-columns:1fr; }
+  .brand-intro-media{ order:-1; }
+  .brand-intro-text p.statement{ max-width:none; }
+  .footer-top{ grid-template-columns:1fr 1fr; row-gap:2.5rem; }
+}
+@media (max-width:760px){
+  .scroll-cue{ display:none; }
+  .product-grid{ grid-template-columns:repeat(2,1fr); }
+  .philosophy-grid{ grid-template-columns:repeat(2,1fr); }
+  .collection-card,.collection-card:nth-child(1),.collection-card:nth-child(2),
+  .collection-card:nth-child(3),.collection-card:nth-child(4){ grid-column:span 12; aspect-ratio:5/4; }
+  .footer-top{ grid-template-columns:1fr; }
+  .newsletter-form{ flex-direction:column; }
+}
+@media (max-width:560px){
+  .product-grid{ grid-template-columns:1fr 1fr; gap:1rem; }
+  .philosophy-grid{ grid-template-columns:1fr 1fr; }
+  .hero h1{ max-width:none; }
+  .search-wrap.is-open .search-input{ width:120px; }
+  .footer-bottom{ flex-direction:column; align-items:flex-start; gap:.6rem; }
+  .footer-legal{ flex-wrap:wrap; row-gap:.4rem; }
+  .footer-credit{ border-left:none; padding-left:0; }
+}
+
+/* ============================================================
+   ACCESSIBILITY — REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  .hero-eyebrow,.hero-title,.hero-sub,.hero-actions,.scroll-cue{ opacity:1; transform:none; }
+  .js-ready .reveal{ opacity:1 !important; transform:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="#top" class="logo">GRAIN</a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="#top">Home</a>
+      <a href="#collections">Collections</a>
+      <a href="#new-arrivals">New&nbsp;Arrivals</a>
+      <a href="#philosophy">About</a>
+      <a href="#newsletter">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <div class="search-wrap" id="searchWrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Search products…" />
+        <button class="icon-btn" id="searchToggle" aria-label="Toggle search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.2" y2="16.2"/></svg>
+        </button>
+      </div>
+      <button class="icon-btn bag-btn" id="bagBtn" aria-label="Shopping bag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="bag-count" id="bagCount">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+     ============================================================ -->
+<nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+  <a href="#top" class="mobile-link">Home</a>
+  <a href="#collections" class="mobile-link">Collections</a>
+  <a href="#new-arrivals" class="mobile-link">New Arrivals</a>
+  <a href="#philosophy" class="mobile-link">About</a>
+  <a href="#newsletter" class="mobile-link">Contact</a>
+  <div class="mobile-nav-foot">GRAIN — FW26 Collection</div>
+</nav>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="hero-media">
+      <img
+        src="https://images.unsplash.com/photo-1613728455120-d00493b5e77e?q=80&w=1800&auto=format&fit=crop"
+        onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-hero/1800/1200'"
+        alt="Model in a tailored black coat, seated, editorial studio lighting"
+        loading="eager" fetchpriority="high" decoding="async" />
+    </div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="eyebrow eyebrow-light hero-fade-up hero-eyebrow">GRAIN — FW26</div>
+      <h1 class="hero-fade-up hero-title">CUT WITH<br /><em>THE GRAIN.</em></h1>
+      <p class="hero-sub hero-fade-up">Considered essentials, constructed to move with you — not against you.</p>
+      <div class="hero-actions hero-fade-up">
+        <a href="#trending" class="btn btn-primary">Shop Now
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg>
+        </a>
+        <a href="#collections" class="btn btn-outline-light">Explore Collection</a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+  </section>
+
+  <!-- ============================================================
+       BRAND INTRO
+       ============================================================ -->
+  <section class="brand-intro">
+    <div class="container">
+      <div class="brand-intro-text reveal">
+        <div class="eyebrow">The Idea</div>
+        <p class="statement">Most clothing is designed to look good standing still. We cut along the grain — the line every fabric naturally wants to move along — so it moves the way you actually do.</p>
+        <p class="support">Considered fabrics. Clean construction. Nothing that fights the body.</p>
+      </div>
+      <div class="brand-intro-media reveal reveal-delay-2">
+        <div class="framed-image">
+          <span class="mark mark-tl"></span><span class="mark mark-tr"></span>
+          <span class="mark mark-bl"></span><span class="mark mark-br"></span>
+          <img
+            src="https://images.unsplash.com/photo-1517502166878-35c93a0072f0?q=80&w=1000&auto=format&fit=crop"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-intro/1000/1250'"
+            alt="Garments hanging on a clean clothing rack" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURED COLLECTIONS
+       ============================================================ -->
+  <section class="collections" id="collections">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Shop By Collection</div>
+          <h2>Find your line.</h2>
+        </div>
+        <p>Four lines, one construction philosophy — pick where you start.</p>
+      </div>
+      <div class="collections-grid">
+        <a href="#" class="collection-card reveal">
+          <img src="https://images.unsplash.com/photo-1523585298601-d46ae038d7d3?q=80&w=1400&auto=format&fit=crop"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-men/1400/1750'"
+               alt="Men's collection lookbook" loading="lazy" decoding="async" />
+          <div class="collection-overlay"></div>
+          <div class="collection-label">
+            <h3>Men</h3>
+            <span class="collection-explore">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="collection-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1629922947773-ad0eff4ad420?q=80&w=1200&auto=format&fit=crop"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-women/1200/1500'"
+               alt="Women's collection lookbook" loading="lazy" decoding="async" />
+          <div class="collection-overlay"></div>
+          <div class="collection-label">
+            <h3>Women</h3>
+            <span class="collection-explore">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="collection-card reveal">
+          <img src="https://images.unsplash.com/photo-1628030328071-538b251a4455?q=80&w=1200&auto=format&fit=crop"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-street/1200/1500'"
+               alt="Streetwear collection lookbook" loading="lazy" decoding="async" />
+          <div class="collection-overlay"></div>
+          <div class="collection-label">
+            <h3>Streetwear</h3>
+            <span class="collection-explore">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg></span>
+          </div>
+        </a>
+        <a href="#" class="collection-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1759229874914-c1ffdb3ebd0c?q=80&w=1400&auto=format&fit=crop"
+               onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-essentials/1400/1750'"
+               alt="Essentials collection lookbook" loading="lazy" decoding="async" />
+          <div class="collection-overlay"></div>
+          <div class="collection-label">
+            <h3>Essentials</h3>
+            <span class="collection-explore">Explore <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="13 5 20 12 13 19"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRENDING PRODUCTS
+       ============================================================ -->
+  <section class="trending" id="trending">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Trending Now</div>
+          <h2>This week's favorites.</h2>
+        </div>
+        <p>The pieces going back in the bag the most.</p>
+      </div>
+      <div class="product-grid">
+
+        <article class="product-card reveal">
+          <div class="product-media">
+            <div class="product-badges"><span class="badge badge-best">Bestseller</span></div>
+            <img src="https://images.unsplash.com/photo-1523205565295-f8e91625443b?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p1/900/1125'"
+                 alt="Structured Overshirt in olive twill" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Structured Overshirt">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Structured Overshirt</h3><span class="product-price">$128</span></div>
+            <p class="product-cat">Outerwear</p>
+            <span class="swatch" style="--swatch:#6E6A4E"><i class="swatch-dot"></i>Brushed Cotton Twill</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-delay-1">
+          <div class="product-media">
+            <div class="product-badges"><span class="badge badge-new">New</span></div>
+            <img src="https://images.unsplash.com/photo-1635650804060-bb009bcb2ea5?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p2/900/1125'"
+                 alt="Relaxed Tapered Trouser in stone" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Relaxed Tapered Trouser">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Relaxed Tapered Trouser</h3><span class="product-price">$98</span></div>
+            <p class="product-cat">Bottoms</p>
+            <span class="swatch" style="--swatch:#B8AC93"><i class="swatch-dot"></i>Cotton-Linen Blend</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-delay-2">
+          <div class="product-media">
+            <img src="https://images.unsplash.com/photo-1621341103818-01dada8c6ef8?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p3/900/1125'"
+                 alt="Essential Crewneck in charcoal" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Essential Crewneck">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Essential Crewneck</h3><span class="product-price">$58</span></div>
+            <p class="product-cat">Tops</p>
+            <span class="swatch" style="--swatch:#3A382E"><i class="swatch-dot"></i>Heavyweight Jersey</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div class="product-media">
+            <div class="product-badges"><span class="badge badge-best">Bestseller</span></div>
+            <img src="https://images.unsplash.com/photo-1599423843366-d5bbbe44b4cd?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p4/900/1125'"
+                 alt="Utility Cargo Pant in black" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Utility Cargo Pant">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Utility Cargo Pant</h3><span class="product-price">$112</span></div>
+            <p class="product-cat">Bottoms</p>
+            <span class="swatch" style="--swatch:#201E19"><i class="swatch-dot"></i>Cotton Ripstop</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-delay-1">
+          <div class="product-media">
+            <div class="product-badges"><span class="badge badge-new">New</span></div>
+            <img src="https://images.unsplash.com/photo-1653875842174-429c1b467548?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p5/900/1125'"
+                 alt="Merino Half-Zip in navy" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Merino Half-Zip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Merino Half-Zip</h3><span class="product-price">$138</span></div>
+            <p class="product-cat">Knitwear</p>
+            <span class="swatch" style="--swatch:#2B3550"><i class="swatch-dot"></i>18.5 Micron Merino</span>
+          </div>
+        </article>
+
+        <article class="product-card reveal reveal-delay-2">
+          <div class="product-media">
+            <img src="https://images.unsplash.com/photo-1589713680561-1d0b6945a582?q=80&w=900&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-p6/900/1125'"
+                 alt="Boxy Tee three pack in ecru" loading="lazy" decoding="async" />
+            <button class="quick-add" data-name="Boxy Tee — 3 Pack">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 13H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+              Quick Add
+            </button>
+          </div>
+          <div class="product-info">
+            <div class="product-top"><h3>Boxy Tee — 3 Pack</h3><span class="product-price">$64</span></div>
+            <p class="product-cat">Tops</p>
+            <span class="swatch" style="--swatch:#E4DEC9"><i class="swatch-dot"></i>Combed Cotton</span>
+          </div>
+        </article>
+
+      </div>
+      <div class="trending-foot reveal">
+        <a href="#" class="btn btn-outline">View All Products</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CAMPAIGN
+       ============================================================ -->
+  <section class="campaign">
+    <div class="campaign-media">
+      <img src="https://images.unsplash.com/photo-1629922944153-83495b3814ef?q=80&w=1800&auto=format&fit=crop"
+           onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-campaign/1800/1200'"
+           alt="Model in a black coat standing against a plain wall" loading="lazy" decoding="async" />
+    </div>
+    <div class="campaign-scrim"></div>
+    <div class="campaign-content reveal">
+      <div class="eyebrow eyebrow-light">FW26 Campaign</div>
+      <h2>MADE TO BE WORN, NOT DISPLAYED.</h2>
+      <p>Real fabrics, real fit — made for the days that actually happen, not the ones staged for a feed.</p>
+      <a href="#trending" class="btn btn-outline-light">Shop The Edit</a>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEW ARRIVALS
+       ============================================================ -->
+  <section class="new-arrivals" id="new-arrivals">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <div class="eyebrow">Just Landed</div>
+          <h2>New arrivals.</h2>
+        </div>
+        <p>Fresh off the line — updated weekly.</p>
+      </div>
+      <div class="arrivals-strip">
+
+        <div class="arrival-card reveal">
+          <div class="arrival-media">
+            <span class="badge badge-new">New</span>
+            <img src="https://images.unsplash.com/photo-1689044611227-3267fabaf76a?q=80&w=700&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-a1/700/933'"
+                 alt="Cropped Puffer Vest" loading="lazy" decoding="async" />
+          </div>
+          <div class="arrival-info"><h3>Cropped Puffer Vest</h3><span>$148</span></div>
+        </div>
+
+        <div class="arrival-card reveal reveal-delay-1">
+          <div class="arrival-media">
+            <span class="badge badge-new">New</span>
+            <img src="https://images.unsplash.com/photo-1586231912972-d0970f9ce787?q=80&w=700&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-a2/700/933'"
+                 alt="Wide-Leg Denim" loading="lazy" decoding="async" />
+          </div>
+          <div class="arrival-info"><h3>Wide-Leg Denim</h3><span>$118</span></div>
+        </div>
+
+        <div class="arrival-card reveal reveal-delay-2">
+          <div class="arrival-media">
+            <span class="badge badge-new">New</span>
+            <img src="https://images.unsplash.com/photo-1532332248682-206cc786359f?q=80&w=700&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-a3/700/933'"
+                 alt="Ribbed Knit Polo" loading="lazy" decoding="async" />
+          </div>
+          <div class="arrival-info"><h3>Ribbed Knit Polo</h3><span>$74</span></div>
+        </div>
+
+        <div class="arrival-card reveal reveal-delay-3">
+          <div class="arrival-media">
+            <span class="badge badge-new">New</span>
+            <img src="https://images.unsplash.com/photo-1649114383220-c4f0f0dbafbe?q=80&w=700&auto=format&fit=crop"
+                 onerror="this.onerror=null;this.src='https://picsum.photos/seed/grain-a4/700/933'"
+                 alt="Technical Windbreaker" loading="lazy" decoding="async" />
+          </div>
+          <div class="arrival-info"><h3>Technical Windbreaker</h3><span>$164</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BRAND PHILOSOPHY
+       ============================================================ -->
+  <section class="philosophy" id="philosophy">
+    <div class="container">
+      <div class="philosophy-head reveal">
+        <div class="eyebrow">Why Grain</div>
+        <h2>Built on four things.</h2>
+      </div>
+      <div class="philosophy-grid">
+        <div class="philosophy-item reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="12" cy="6" rx="7" ry="2.4"/><ellipse cx="12" cy="18" rx="7" ry="2.4"/><path d="M5 6L5 18M19 6L19 18"/><path d="M7 8L17 16M7 16L17 8" stroke-width="1"/></svg>
+          <h3>Quality</h3>
+          <p>Fabrics chosen to outlast the trend cycle.</p>
+        </div>
+        <div class="philosophy-item reveal reveal-delay-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12" stroke-dasharray="3 4"/><line x1="6" y1="9" x2="6" y2="15"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="18" y1="9" x2="18" y2="15"/></svg>
+          <h3>Construction</h3>
+          <p>Clean seams, considered details, nothing extra.</p>
+        </div>
+        <div class="philosophy-item reveal reveal-delay-2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3 9c2 3 4 3 6 0s4-3 6 0 4 3 6 0"/><path d="M3 15c2 3 4 3 6 0s4-3 6 0 4 3 6 0"/></svg>
+          <h3>Comfort</h3>
+          <p>Cut along the grain, so it moves with you.</p>
+        </div>
+        <div class="philosophy-item reveal reveal-delay-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"><path d="M12 3h6a2 2 0 0 1 2 2v6L11 20l-8-8L12 3z"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/></svg>
+          <h3>Identity</h3>
+          <p>Pieces that adapt as you do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+       ============================================================ -->
+  <section class="newsletter" id="newsletter">
+    <div class="container reveal">
+      <div class="eyebrow">Stay Connected</div>
+      <h2>Stay in the loop.</h2>
+      <p>Be the first to know about new drops, collections and exclusive releases.</p>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" required placeholder="Your email address" aria-label="Email address" id="newsletterInput" />
+        <button type="submit" class="btn btn-primary" id="newsletterBtn">Subscribe</button>
+      </form>
+      <div class="newsletter-note" id="newsletterNote"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="logo">GRAIN</a>
+        <p>Considered essentials, built along the grain. Designed for a life that doesn't sit still.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M9 17c1-4 1-8 3-9.5 2-1.4 4.5 0 4.2 2.6-.3 2.6-2.4 4-4.2 3.4"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4v10.5a3.5 3.5 0 1 1-3-3.46"/><path d="M14 4c.6 2 2.2 3.4 4 3.7"/></svg></a>
+          <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#collections">Men</a>
+        <a href="#collections">Women</a>
+        <a href="#collections">Streetwear</a>
+        <a href="#collections">Essentials</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#philosophy">About</a>
+        <a href="#newsletter">Contact</a>
+        <a href="#">Careers</a>
+        <a href="#">Stores</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Size Guide</a>
+        <a href="#">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span id="footerYear">© 2026 GRAIN. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <span class="footer-credit">Crafted by Prajwal</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Flag JS as available — CSS only hides .reveal content when this class is present,
+     so the page stays fully visible if this script never runs. */
+  document.documentElement.classList.add('js-ready');
+
+  /* ---------- Header scroll state ---------- */
+  var header = document.getElementById('header');
+  var onScroll = function(){
+    if (window.scrollY > 60) header.classList.add('is-scrolled');
+    else header.classList.remove('is-scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  /* ---------- Mobile nav toggle ---------- */
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  function closeMenu(){
+    menuToggle.classList.remove('is-open');
+    mobileNav.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  menuToggle.addEventListener('click', function(){
+    var open = mobileNav.classList.toggle('is-open');
+    menuToggle.classList.toggle('is-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* ---------- Search toggle ---------- */
+  var searchWrap = document.getElementById('searchWrap');
+  var searchToggle = document.getElementById('searchToggle');
+  var searchInput = document.getElementById('searchInput');
+  searchToggle.addEventListener('click', function(){
+    var open = searchWrap.classList.toggle('is-open');
+    if (open) setTimeout(function(){ searchInput.focus(); }, 250);
+    else searchInput.value = '';
+  });
+  searchInput.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){ searchWrap.classList.remove('is-open'); searchInput.blur(); }
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:.15, rootMargin:'0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in-view'); });
+  }
+
+  /* ---------- Bag counter + quick add feedback ---------- */
+  var bagCount = document.getElementById('bagCount');
+  var count = 0;
+  document.querySelectorAll('.quick-add').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      count += 1;
+      bagCount.textContent = String(count);
+      var original = btn.innerHTML;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Added';
+      btn.disabled = true;
+      setTimeout(function(){ btn.innerHTML = original; btn.disabled = false; }, 1400);
+    });
+  });
+
+  /* ---------- Newsletter form (demo — no backend) ---------- */
+  var form = document.getElementById('newsletterForm');
+  var note = document.getElementById('newsletterNote');
+  var nlBtn = document.getElementById('newsletterBtn');
+  var nlInput = document.getElementById('newsletterInput');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!nlInput.checkValidity()){
+      note.textContent = 'Please enter a valid email address.';
+      return;
+    }
+    nlBtn.textContent = 'Subscribed ✓';
+    nlInput.disabled = true;
+    note.textContent = "You're on the list — welcome to GRAIN.";
+  });
+
+  /* ---------- Footer year ---------- */
+  document.getElementById('footerYear').textContent = '© ' + new Date().getFullYear() + ' GRAIN. All rights reserved.';
+
+})();
+</script>
+</body>
+</html>
